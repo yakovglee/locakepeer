@@ -2,8 +2,8 @@ import { FacebookOutlined, InstagramOutlined, CloseOutlined } from '@ant-design/
 import { Card } from 'antd';
 const { Meta } = Card;
 
-const OverlayContent = () => (
-  <Card type='inner' title='Название места name' extra={<CloseOutlined />}
+const OverlayContent = ( {data, onClose} ) => (
+  <Card type='inner' title={data.name} extra={<CloseOutlined onClick={onClose} />}
     style={{
         width: 300,
     }}
@@ -20,8 +20,8 @@ const OverlayContent = () => (
     <Meta
       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin id ultrices libero, et aliquam est. Vivamus bibendum faucibus enim, sit amet consequat est malesuada nec. Vivamus ut mi justo. Donec gravida facilisis massa, ut feugiat dolor vulputate volutpat. Cras tortor justo, tristique ut facilisis ac, dictum ac tortor. Sed dictum enim sed turpis eleifend fringilla. Nam ut auctor erat, eget luctus est. Suspendisse et diam convallis, pellentesque velit at, facilisis dolor. Mauris at ipsum maximus, posuere nisi at, rutrum odio. Nulla fermentum convallis accumsan. description"
     />
-    <h3>Часы Работы time</h3>
-    <h3>Доставка pedal</h3>
+    <h3>Часы Работы { data.time }</h3>
+    <h3>Доставка { data.pedal }</h3>
   </Card>
 );
 
