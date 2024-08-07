@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/locakepeer/static/css/main.3d77f621.css",
+    "main.js": "/locakepeer/static/js/main.65c70190.js",
+    "index.html": "/locakepeer/index.html",
+    "main.3d77f621.css.map": "/locakepeer/static/css/main.3d77f621.css.map",
+    "main.65c70190.js.map": "/locakepeer/static/js/main.65c70190.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3d77f621.css",
+    "static/js/main.65c70190.js"
+  ]
+}
