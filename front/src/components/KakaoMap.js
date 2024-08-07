@@ -17,14 +17,14 @@ function KakaoMap() {
                 <Map
                     id={`map`}
                     center={{
-                        lat: 37.498004414546934,
-                        lng: 127.02770621963765,
+                        lat: 37.5665,
+                        lng: 126.978,
                     }}
                     style={{
                         width: "100%",
                         height: "450px",
                     }}
-                    level={3}
+                    level={10}
                 >
                     {data.map((obj) => (
                         <MapMarker
