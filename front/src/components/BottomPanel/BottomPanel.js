@@ -1,19 +1,21 @@
+import React from 'react';
 import { Radio } from 'antd';
-import './BottomPanel.css'
+import './BottomPanel.css';
 
-function BottomPanel () {
+const BottomPanel = ({ selectedCategory, onCategoryChange }) => {
 
-    return (
-        <div className='bottomPanel'>
-
-            <Radio.Group defaultValue={'sight'}>
-                <Radio.Button value='sight'>Походить</Radio.Button>
-                <Radio.Button value="caffe">Похавать</Radio.Button>
-            </Radio.Group>
-        
-        </div>    
-    )
-
-}
+  return (
+    <div className='bottomPanel'>
+      <Radio.Group 
+      defaultValue={selectedCategory}
+        value={selectedCategory} 
+        onChange={onCategoryChange}
+      >
+        <Radio.Button value='sight'>Походить</Radio.Button>
+        <Radio.Button value='caffe'>Похавать</Radio.Button>
+      </Radio.Group>
+    </div>
+  );
+};
 
 export default BottomPanel;
