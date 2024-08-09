@@ -7,7 +7,6 @@ const BottomPanel = ({ selectedCategory, onCategoryChange }) => {
   return (
     <div className='bottomPanel'>
       <Radio.Group 
-      defaultValue={selectedCategory}
         value={selectedCategory} 
         onChange={onCategoryChange}
       >
