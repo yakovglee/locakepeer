@@ -1,15 +1,14 @@
-
 .custom-card .ant-card-meta-description {
   max-height: 150px; 
   text-align: left; 
   overflow-wrap: break-word; 
   white-space: pre-wrap; 
-  overflow: hidden;
+  overflow: hidden; 
 }
 
-.card-content .ant-card-body {
-  
-  overflow-y: auto; 
+.card-content {
+  max-height: 200px; 
+  overflow-y: auto;  
 }
 
 .link_kakao {
