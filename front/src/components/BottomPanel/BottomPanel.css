@@ -1,0 +1,12 @@
+.bottomPanel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 1000; 
+}
+
+.bottomPanel .ant-radio-button-wrapper {
+    margin: 0 0.5px; 
+}
