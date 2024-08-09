@@ -1,8 +1,10 @@
 import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import { useState } from 'react';
 
-import data from '../data.js';
-import OverlayContent from "./OverlayContent.js";
+import data from '../../data.js';
+import './KakaoMap.css'; 
+import OverlayContent from "../OverlayComponent/OverlayContent.js";
+import BottomPanel from "../BottomPanel/BottomPanel.js";
 
 function KakaoMap() {
     const [activeMarker, setActiveMarker] = useState(null);
@@ -17,19 +19,22 @@ function KakaoMap() {
                 <Map
                     id={`map`}
                     center={{
-                        lat: 37.5665,
-                        lng: 126.978,
+                        lat: 36.2683,
+                        lng: 127.6358,
                     }}
-                    style={{
-                        width: "100%",
-                        height: "450px",
-                    }}
-                    level={10}
+                    level={13}
                 >
                     {data.map((obj) => (
                         <MapMarker
                             key={obj.id} 
                             position={obj.position}
+                            image={{
+                                src: "./markerSign.png", 
+                                size: {
+                                    width: 24,
+                                    height: 30
+                                }, 
+                            }}
                             onClick={() => setActiveMarker(obj)} 
                         />
                     ))}
@@ -43,6 +48,8 @@ function KakaoMap() {
                             />
                         </CustomOverlayMap>
                     )}
+
+                    <BottomPanel />
                 </Map>
             </div>
         </>

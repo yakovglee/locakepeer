@@ -1,6 +1,5 @@
 import './App.css';
-import KakaoMap from './components/KakaoMap';
-import OverlayContent from './components/OverlayContent';
+import KakaoMap from './components/KakaoMap/KakaoMap';
 
 function App() {
   return (
