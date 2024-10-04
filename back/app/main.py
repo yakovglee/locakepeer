@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
+from back.app.core.config import settings
 
-from db.schemas import InfoSpot
 from db import db
 
 app = FastAPI()
@@ -13,4 +13,4 @@ def heloo():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host=settings.FASTApi.host, port=settings.FASTApi.port, reload=True)
