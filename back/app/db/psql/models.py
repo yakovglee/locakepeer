@@ -17,3 +17,4 @@ class Places(Base):
     lng: Mapped[float]
     category: Mapped[str]
     created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now())
+    
