@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 class PlacesBase(BaseModel):
     address: str
-    lat: str
-    lng: str
+    lat: float
+    lng: float
     category: str
 
 
