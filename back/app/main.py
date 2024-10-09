@@ -21,7 +21,7 @@ def get_db():
 
 @app.get("/places/", response_model=list[schemas.Places])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    places = crud.get_users(db, skip=skip, limit=limit)
+    places = crud.get_places(db, skip=skip, limit=limit)
     return places
 
 
