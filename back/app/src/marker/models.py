@@ -1,9 +1,14 @@
-from sqlalchemy import Integer, func
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
+from typing import TYPE_CHECKING
+
+from sqlalchemy import ForeignKey, Integer, func
+from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import relationship
 
 
 from db.psql.db import Base
+
+if TYPE_CHECKING:
+    from src.place.models import Place
 
 
 class Marker(Base):
@@ -18,3 +23,6 @@ class Marker(Base):
     created_at: Mapped[int] = mapped_column(
         Integer, default=func.extract("epoch", func.now())
     )
+
+    place_id: Mapped[int] = mapped_column(ForeignKey(Place.id))
+    place: Mapped[list[Place]] = relationship(back_populates="marker")
