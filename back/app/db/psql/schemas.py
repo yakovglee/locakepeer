@@ -1,21 +1,20 @@
-from datetime import datetime
 from pydantic import BaseModel
 
 
-class PlacesBase(BaseModel):
+class MarkerBase(BaseModel):
     address: str
     lat: float
     lng: float
     category: str
 
 
-class PlacesCreate(PlacesBase):
+class MarkerCreate(MarkerBase):
     pass
 
 
-class Places(PlacesBase):
+class Marker(MarkerBase):
     id: int
-    created_at: datetime
+    created_at: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

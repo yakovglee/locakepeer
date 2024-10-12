@@ -19,9 +19,9 @@ def get_db():
         db.close()
 
 
-@app.get("/places/", response_model=list[schemas.Places])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    places = crud.get_places(db, skip=skip, limit=limit)
+@app.get("/places/", response_model=list[schemas.Marker])
+def get_markers(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    places = crud.get_markers(db, skip=skip, limit=limit)
     return places
 
 

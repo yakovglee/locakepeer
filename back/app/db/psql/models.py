@@ -6,9 +6,9 @@ from sqlalchemy.orm import mapped_column
 from .db import Base
 
 
-class Place(Base):
+class Marker(Base):
 
-    __tablename__ = "place"
+    __tablename__ = "marker"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     address: Mapped[str]
