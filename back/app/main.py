@@ -7,9 +7,9 @@ from core.config import settings
 from src import routers
 
 
-app = FastAPI()
+app = FastAPI(title="Locakeeper")
 
-app.include_router(routers)
+app.include_router(routers, prefix="/api")
 
 
 if __name__ == "__main__":
