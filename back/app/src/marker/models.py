@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, List, Optional
 
-from sqlalchemy import ForeignKey, Integer, func
+from sqlalchemy import Integer, Sequence, func
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import relationship
 
@@ -15,7 +15,11 @@ class Marker(Base):
 
     __tablename__ = "marker"
 
-    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    id: Mapped[int] = mapped_column(
+        Sequence("place_id_seq", start=1000, increment=1),
+        primary_key=True,
+        autoincrement=True,
+    )
     address: Mapped[str]
     lat: Mapped[float]
     lng: Mapped[float]
