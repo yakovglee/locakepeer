@@ -24,5 +24,5 @@ class Marker(Base):
         Integer, default=func.extract("epoch", func.now())
     )
 
-    place_id: Mapped[int] = mapped_column(ForeignKey(Place.id))
-    place: Mapped[list[Place]] = relationship(back_populates="marker")
+    place_id: Mapped[int] = mapped_column(ForeignKey("place.id"))
+    place: Mapped[list["Place"]] = relationship(back_populates="marker")

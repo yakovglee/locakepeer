@@ -30,5 +30,5 @@ class Place(Base):
         onupdate=func.extract("epoch", func.now),
     )
 
-    marker_id = mapped_column(ForeignKey(Marker.id))
-    marker: Mapped[Marker] = relationship(back_populates="place")
+    marker_id = mapped_column(ForeignKey("marker.id"))
+    marker: Mapped["Marker"] = relationship(back_populates="place")
