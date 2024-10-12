@@ -17,6 +17,7 @@ class Place(PlaceBase):
     id: int
     created_at: int
     updated_at: int
+    marker_id: int | None = None
 
     class Config:
         from_attributes = True

@@ -5,6 +5,8 @@ from db.psql.db import get_db
 
 from . import schemas, crud
 
+from src.place.schemas import Place as sPlace
+
 router = APIRouter()
 
 
@@ -18,6 +20,14 @@ def read_item(marker_id: int, db: Session = Depends(get_db)):
     db_item = crud.get_marker(db=db, marker_id=marker_id)
     if db_item is None:
         raise HTTPException(status_code=404, detail="Marker not found")
+    return db_item
+
+
+@router.put("/{marker_id}", response_model=sPlace)
+def read_item(place_id: int, marker_id: int, db: Session = Depends(get_db)):
+    db_item = crud.upd_place_markerid(db=db, place_id=place_id, marker_id=marker_id)
+    if db_item is None:
+        raise HTTPException(status_code=404, detail="Change is unavailable")
     return db_item
 
 

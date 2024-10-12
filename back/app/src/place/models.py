@@ -26,8 +26,8 @@ class Place(Base):
     )
     updated_at: Mapped[int] = mapped_column(
         Integer,
-        default=func.extract("epoch", func.now),
-        onupdate=func.extract("epoch", func.now),
+        default=func.extract("epoch", func.now()),
+        onupdate=func.extract("epoch", func.now()),
     )
 
     marker_id: Mapped[Optional[int]] = mapped_column(
