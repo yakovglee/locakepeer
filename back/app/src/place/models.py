@@ -33,4 +33,9 @@ class Place(Base):
     marker_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("marker.id"), nullable=True
     )
-    marker: Mapped["Marker"] = relationship(back_populates="place")
+
+    marker: Mapped[Optional["Marker"]] = relationship(
+        back_populates="place",
+        foreign_keys=[marker_id],
+        remote_side=[marker_id],
+    )
