@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from sqlalchemy import ForeignKey, Integer, func
 from sqlalchemy.orm import Mapped, mapped_column
@@ -24,5 +24,7 @@ class Marker(Base):
         Integer, default=func.extract("epoch", func.now())
     )
 
-    place_id: Mapped[int] = mapped_column(ForeignKey("place.id"))
+    place_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("place.id"), nullable=True
+    )
     place: Mapped[list["Place"]] = relationship(back_populates="marker")
