@@ -17,6 +17,9 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
 
+    networks:
+      - my_network
+
   fastapi-app:
     build: ./app/.
     container_name: fastapi_app
@@ -27,14 +30,8 @@ services:
     env_file:
       - '.env'
 
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"  
-      PGADMIN_DEFAULT_PASSWORD: "admin" 
-    ports:
-      - "8081:80"  
+    networks:
+      - my_network
 
-volumes:
-  pgadmin-data:
-  pgdb-data:
+networks:
+  my_network:
