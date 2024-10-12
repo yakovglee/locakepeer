@@ -1,4 +1,5 @@
-__all__ = ["Marker"]
+__all__ = ["Marker", "Place"]
 
 
 from .marker.models import *
+from .place.models import *
