@@ -1,29 +1,15 @@
 import uvicorn
-from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import FastAPI
 
-from src.marker import models, schemas
 from core.config import settings
-from src.marker import crud
-from db.psql.db import SessionLocal
+
+
+from src import routers
 
 
 app = FastAPI()
 
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
-@app.get("/places/", response_model=list[schemas.Marker])
-def get_markers(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    places = crud.get_markers(db, skip=skip, limit=limit)
-    return places
+app.include_router(routers)
 
 
 if __name__ == "__main__":
