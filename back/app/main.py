@@ -1,28 +1,15 @@
 import uvicorn
-from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import FastAPI
 
 from core.config import settings
-from db.psql import crud, models, schemas
-from db.psql.db import SessionLocal
 
 
-app = FastAPI()
+from src import routers
 
 
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+app = FastAPI(title="Locakeeper")
 
-
-@app.get("/places/", response_model=list[schemas.Places])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    places = crud.get_places(db, skip=skip, limit=limit)
-    return places
+app.include_router(routers, prefix="/api")
 
 
 if __name__ == "__main__":
