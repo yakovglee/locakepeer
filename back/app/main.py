@@ -2,8 +2,9 @@ import uvicorn
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
+from src.marker import models, schemas
 from core.config import settings
-from db.psql import crud, models, schemas
+from src.marker import crud
 from db.psql.db import SessionLocal
 
 

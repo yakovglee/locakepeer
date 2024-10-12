@@ -5,6 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 from db.psql.db import Base, DATABASE_URL
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -17,7 +18,7 @@ if config.config_file_name is not None:
 # add your model's MetaData object here
 # for 'autogenerate' support
 
-import db.psql.models
+from src import Marker
 
 target_metadata = Base.metadata
 

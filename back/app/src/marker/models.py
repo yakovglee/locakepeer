@@ -3,7 +3,7 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
 
-from .db import Base
+from db.psql.db import Base
 
 
 class Marker(Base):
