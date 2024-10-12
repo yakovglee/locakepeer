@@ -18,7 +18,6 @@ class Place(Base):
     id: Mapped[int] = mapped_column(
         Sequence("place_id_seq", start=1000, increment=1),
         primary_key=True,
-        autoincrement=True,
     )
     head: Mapped[str]
     subhead: Mapped[Optional[str]]
