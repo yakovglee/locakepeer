@@ -21,6 +21,7 @@ class PSQLConfig(BaseModel):
 
 class AuthConfig(BaseModel):
     lifespan: int
+    secret: str
 
 
 class Settings(BaseSettings):
