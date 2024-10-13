@@ -11,15 +11,17 @@ engine = create_async_engine(
     DATABASE_URL,
 )
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+AsyncSessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine,
+    class_=AsyncSession,
+)
 
 Base = declarative_base()
 
 
 # Dependency
 async def get_db():
-    db = AsyncSession()
-    try:
-        yield db
-    finally:
-        await db.close()
+    async with AsyncSessionLocal() as session:
+        yield session
