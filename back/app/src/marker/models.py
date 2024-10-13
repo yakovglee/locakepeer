@@ -1,14 +1,16 @@
 from typing import TYPE_CHECKING, List, Optional
 
-from sqlalchemy import Integer, Sequence, func
+from sqlalchemy import ForeignKey, Integer, Sequence, func
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import relationship
 
 
 from db.psql.db import Base
+from src.user.types import UserTypeID
 
 if TYPE_CHECKING:
     from src.place.models import Place
+    from src.user.models import User
 
 
 class Marker(Base):
@@ -27,4 +29,9 @@ class Marker(Base):
         Integer, default=func.extract("epoch", func.now())
     )
 
+    user_id: Mapped[UserTypeID] = mapped_column(
+        ForeignKey("user.id", ondelete="cascade"), nullable=False
+    )
+
     place: Mapped[Optional[List["Place"]]] = relationship(back_populates="marker")
+    user: Mapped["User"] = relationship(back_populates="marker")
