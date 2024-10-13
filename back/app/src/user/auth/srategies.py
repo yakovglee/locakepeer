@@ -8,7 +8,7 @@ from fastapi_users.authentication.strategy.db import (
 from fastapi import Depends
 
 
-from user.models import AccessToken
+from src.user.models import AccessToken
 from db.psql.db import get_db
 
 
@@ -16,7 +16,7 @@ async def get_access_token_db(session=Depends(get_db)):
     yield SQLAlchemyAccessTokenDatabase(session, AccessToken)
 
 
-from user.db import AccessToken, User
+from src.user.models import AccessToken, User
 from core.config import settings
 
 

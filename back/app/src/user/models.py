@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import ForeignKey, Integer
-from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyBaseAccessTokenTable
+from fastapi_users.db import SQLAlchemyBaseUserTable
+from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyBaseAccessTokenTable
 from sqlalchemy.ext.declarative import declared_attr
-
 from db.psql.db import Base
 
 

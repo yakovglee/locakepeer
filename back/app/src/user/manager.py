@@ -10,7 +10,7 @@ from .types import UserTypeID
 from core.config import settings
 
 
-class UserManager(UserTypeID, BaseUserManager[User, UserTypeID.id]):
+class UserManager(UserTypeID, BaseUserManager[User, UserTypeID]):
     reset_password_token_secret = settings.AUTH.secret
     verification_token_secret = settings.AUTH.secret
 
