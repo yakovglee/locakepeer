@@ -8,7 +8,8 @@ from .user.models import *
 from fastapi import APIRouter
 from .marker.api import router as marker_router
 from .place.api import router as place_router
-from .user.api import router as user_router
+from .user.api import router as auth_router
+from .user.api import user_router
 
 routers = APIRouter(prefix="/api")
 
@@ -25,5 +26,10 @@ routers.include_router(
 )
 
 routers.include_router(
+    auth_router,
+)
+
+routers.include_router(
     user_router,
+    tags=["Users"],
 )
