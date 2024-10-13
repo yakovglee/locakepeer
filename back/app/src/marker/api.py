@@ -7,16 +7,19 @@ from . import schemas, crud
 from src.place.crud import upd_markerid as mPlace_upd_markerid
 
 from src.place.schemas import Place as sPlace
-
+from src.user.models import User
+from src.user.users import current_active_user
 
 router = APIRouter()
 
 
 @router.post("/", response_model=schemas.Marker)
 async def create_markers(
-    item: schemas.MarkerCreate, db: AsyncSession = Depends(get_db)
+    item: schemas.MarkerCreate,
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(current_active_user),
 ):
-    created_item = await crud.create_marker(db=db, item=item)
+    created_item = await crud.create_marker(db=db, item=item, user_id=user.id)
     return created_item
 
 

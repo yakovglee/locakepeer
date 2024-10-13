@@ -4,13 +4,19 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from db.psql.db import get_db
 
 from . import schemas, crud
+from src.user.models import User
+from src.user.users import current_active_user
 
 router = APIRouter()
 
 
 @router.post("/", response_model=schemas.Place)
-async def create_places(item: schemas.PlaceCreate, db: AsyncSession = Depends(get_db)):
-    created_place = await crud.create_place(db=db, item=item)
+async def create_places(
+    item: schemas.PlaceCreate,
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(current_active_user),
+):
+    created_place = await crud.create_place(db=db, item=item, user_id=user.id)
     return created_place
 
 

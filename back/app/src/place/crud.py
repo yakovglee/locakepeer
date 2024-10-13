@@ -16,8 +16,9 @@ async def get_places(db: AsyncSession, skip: int = 0, limit: int = 100):
     return result.scalars().all()
 
 
-async def create_place(db: AsyncSession, item: schemas.PlaceCreate):
+async def create_place(db: AsyncSession, item: schemas.PlaceCreate, user_id: int):
     db_item = models.Place(**item.model_dump())
+    db_item.user_id = user_id
     db.add(db_item)
     await db.commit()
     await db.refresh(db_item)

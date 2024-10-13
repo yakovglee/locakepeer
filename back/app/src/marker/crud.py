@@ -21,8 +21,9 @@ async def get_markers(db: AsyncSession, skip: int = 0, limit: int = 100):
     return result.scalars().all()
 
 
-async def create_marker(db: AsyncSession, item: schemas.MarkerCreate):
+async def create_marker(db: AsyncSession, item: schemas.MarkerCreate, user_id: int):
     db_item = models.Marker(**item.model_dump())
+    db_item.user_id = user_id
     db.add(db_item)
     await db.commit()
     await db.refresh(db_item)
