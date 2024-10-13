@@ -1,28 +1,29 @@
-from sqlalchemy.orm import Session
+from sqlalchemy import update
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
 
 from . import models
 from . import schemas
 
 from src.place.models import Place
+from src.place.crud import upd_markerid
 
 
-def get_marker(db: Session, marker_id: int):
-    return db.query(models.Marker).filter(models.Marker.id == marker_id).first()
+async def get_marker(db: AsyncSession, marker_id: int):
+    result = await db.execute(
+        select(models.Marker).filter(models.Marker.id == marker_id)
+    )
+    return result.scalar_one_or_none()
 
 
-def get_markers(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Marker).offset(skip).limit(limit).all()
+async def get_markers(db: AsyncSession, skip: int = 0, limit: int = 100):
+    result = await db.execute(select(models.Marker).offset(skip).limit(limit))
+    return result.scalars().all()
 
 
-def create_marker(db: Session, item: schemas.MarkerCreate):
+async def create_marker(db: AsyncSession, item: schemas.MarkerCreate):
     db_item = models.Marker(**item.model_dump())
     db.add(db_item)
-    db.commit()
-    db.refresh(db_item)
+    await db.commit()
+    await db.refresh(db_item)
     return db_item
-
-
-def upd_place_markerid(db: Session, place_id: int, marker_id: int):
-    db.query(Place).filter(Place.id == place_id).update({"marker_id": marker_id})
-    db.commit()
-    return db.query(Place).filter(Place.id == place_id).one_or_none()
