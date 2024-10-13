@@ -22,9 +22,15 @@ async def read_item(place_id: int, db: AsyncSession = Depends(get_db)):
     return db_item
 
 
-@router.put("/{place_id}", response_model=schemas.Place)
-async def read_item(place_id: int, marker_id: int, db: AsyncSession = Depends(get_db)):
-    db_item = await crud.upd_markerid(db=db, place_id=place_id, marker_id=marker_id)
+@router.patch("/{place_id}", response_model=schemas.Place)
+async def read_item(
+    place_id: int,
+    marker_id: schemas.MarkerIdPlaceIdPatch,
+    db: AsyncSession = Depends(get_db),
+):
+    db_item = await crud.upd_markerid(
+        db=db, place_id=place_id, marker_id=marker_id.marker_id
+    )
     if db_item is None:
         raise HTTPException(status_code=404, detail="Change is unavailable")
     return db_item

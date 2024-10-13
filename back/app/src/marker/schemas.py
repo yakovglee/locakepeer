@@ -1,6 +1,10 @@
 from pydantic import BaseModel
 
 
+class PlaceIdMarkerIdPatch(BaseModel):
+    place_id: int
+
+
 class MarkerBase(BaseModel):
     address: str
     lat: float
