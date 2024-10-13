@@ -1,6 +1,10 @@
 from pydantic import BaseModel
 
 
+class MarkerIdPlaceIdPatch(BaseModel):
+    marker_id: int
+
+
 class PlaceBase(BaseModel):
     head: str
     subhead: str | None = None
