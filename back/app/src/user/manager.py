@@ -1,8 +1,10 @@
 from typing import Optional
 
 from fastapi import Depends, Request
-from fastapi_users import BaseUserManager
-
+from fastapi_users import (
+    BaseUserManager,
+    IntegerIDMixin,
+)
 from .db import User, get_user_db
 
 from .types import UserTypeID
@@ -10,7 +12,7 @@ from .types import UserTypeID
 from core.config import settings
 
 
-class UserManager(UserTypeID, BaseUserManager[User, UserTypeID]):
+class UserManager(IntegerIDMixin, BaseUserManager[User, UserTypeID]):
     reset_password_token_secret = settings.AUTH.secret
     verification_token_secret = settings.AUTH.secret
 

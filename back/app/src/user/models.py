@@ -5,9 +5,11 @@ from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyBaseAccessTokenTa
 from sqlalchemy.ext.declarative import declared_attr
 from db.psql.db import Base
 
+from .types import UserTypeID
 
-class User(SQLAlchemyBaseUserTable[int], Base):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+
+class User(SQLAlchemyBaseUserTable[UserTypeID], Base):
+    id: Mapped[UserTypeID] = mapped_column(Integer, primary_key=True)
 
 
 class AccessToken(SQLAlchemyBaseAccessTokenTable[int], Base):

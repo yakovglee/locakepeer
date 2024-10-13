@@ -3,7 +3,7 @@ from fastapi_users import schemas
 from .types import UserTypeID
 
 
-class UserRead(schemas.BaseUser[UserTypeID.id]):
+class UserRead(schemas.BaseUser[UserTypeID]):
     pass
 
 
