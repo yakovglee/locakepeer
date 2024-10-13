@@ -9,7 +9,7 @@ from src import routers
 
 app = FastAPI(title="Locakeeper")
 
-app.include_router(routers, prefix="/api")
+app.include_router(routers)
 
 
 if __name__ == "__main__":
