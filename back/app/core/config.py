@@ -19,6 +19,10 @@ class PSQLConfig(BaseModel):
     POSTGRES_HOST: str
 
 
+class AuthConfig(BaseModel):
+    lifespan: int
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file="../.env",
@@ -30,6 +34,7 @@ class Settings(BaseSettings):
     GS: GSConfig
     FASTApi: FASTApiConfig
     PSQL: PSQLConfig
+    AUTH: AuthConfig
 
 
 settings = Settings()

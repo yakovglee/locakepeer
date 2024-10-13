@@ -1,9 +1,9 @@
-__all__ = ["Marker", "Place"]
+__all__ = ["Marker", "Place", "User"]
 
 
 from .marker.models import *
 from .place.models import *
-
+from .user.models import *
 
 from fastapi import APIRouter
 from .marker.api import router as marker_router
