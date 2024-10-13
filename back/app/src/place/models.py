@@ -6,9 +6,11 @@ from sqlalchemy.orm import relationship
 
 
 from db.psql.db import Base
+from src.user.types import UserTypeID
 
 if TYPE_CHECKING:
     from src.marker.models import Marker
+    from src.user.models import User
 
 
 class Place(Base):
@@ -34,8 +36,11 @@ class Place(Base):
     )
 
     marker_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("marker.id"), nullable=True
+        ForeignKey("marker.id", ondelete="cascade"), nullable=True
     )
+    user_id: Mapped[UserTypeID] = mapped_column(ForeignKey("user.id"), nullable=False)
+
+    user: Mapped["User"] = relationship(back_populates="place")
 
     marker: Mapped[Optional["Marker"]] = relationship(
         back_populates="place",
